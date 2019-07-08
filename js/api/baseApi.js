@@ -6,9 +6,18 @@ export default class BaseApi {
     throw new Error('Please implement this method');
   }
 
-  getAll() {
-    const url = `${AppConstants.API_URL}/${this.getResourceName()}`;
+
+
+  getAll(limit) {
+    let url = '';
+    if (limit) {
+      url = `${AppConstants.API_URL}/${this.getResourceName()}/?${limit}`;
+    } else {
+      url = `${AppConstants.API_URL}/${this.getResourceName()}`;
+    }
+
     return fetchClient.get(url);
+
   }
 
   getDetail(postId) {

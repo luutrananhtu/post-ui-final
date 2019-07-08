@@ -145,6 +145,24 @@ const buildPostItem = (item) => {
 
 };
 
+const renderPagination = (pagination) => {
+  let page = pagination._page;
+
+  const paginationDown = document.querySelector('#paginationDown');
+  paginationDown.addEventListener('click', () => {
+    --page;
+    paginationDown.href = `?_limit=6&_page=${page}`;
+  });
+  console.log(paginationDown);
+
+  const paginationUp = document.querySelector('#paginationUp');
+  paginationUp.addEventListener('click', () => {
+    ++page;
+    paginationUp.href = `?_limit=6&_page=${page}`;
+  });
+  console.log(paginationUp);
+};
+
 // getPostListAsync().then(data => console.log)
 
 // -----------------------
@@ -178,9 +196,24 @@ const init = async () => {
   //   .then(postList => console.log(postList))
   //   .catch(error => console.log('Failed to fetch post list: ', error));
 
-  try {
 
-    const data = await postApi.getAll();
+
+
+  try {
+    let param = new URLSearchParams(window.location.search);
+
+    const limit = `_limit=6`;
+    let numberPage = param.get('_page');
+    let page = `_page=${numberPage}`;
+
+    const limitAndPage = `${limit}&${page}`
+    const postList = await postApi.getAll(limitAndPage);
+    const data = postList.data.reverse();
+
+
+    const pagination = postList.pagination;
+    renderPagination(pagination);
+
     console.log(data);
     const listPost = document.querySelector('#postsList');
     for (const item of data) {
