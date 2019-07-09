@@ -2,7 +2,32 @@ import utils from "./utils.js";
 import postApi from "./api/postApi.js";
 import AppConstants from "./appConstants.js";
 
+const validatePostForm = () => {
+    let isValid = true;
+  
+    // title is required
+    const title = utils.getValueByElementId('postTitle');
+    if (!title) {
+      utils.addClassByElementId('postTitle', ['is-invalid']);
+      isValid = false;
+    }
+  
+    // author is required
+    const author = utils.getValueByElementId('postAuthor');
+    if (!author) {
+      utils.addClassByElementId('postAuthor', ['is-invalid']);
+      isValid = false;
+    }
+  
+    return isValid;
+  };
+  
+  
+
 const handleFormSubmit = async () => {
+
+    let isValid = validatePostForm();
+    if(isValid){
     const formValue = getFormValue();
     const newPost = {
         ...formValue
@@ -10,6 +35,7 @@ const handleFormSubmit = async () => {
     await postApi.add(newPost);
     const editPageUrl = `add-edit-post.html?postId=${newPost.id}`;
     window.location = editPageUrl;
+}
 }
 
 const handleEdit = async (id) => {

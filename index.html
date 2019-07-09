@@ -23,6 +23,8 @@
   <!-- Internal CSS -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/lightbox.min.css">
+  <script type="module" src="/js/lightbox-plus-jquery.min.js"></script>
 </head>
 
 <body>
@@ -137,12 +139,12 @@
         <nav class="posts-nav" aria-label="Posts navigation">
           <ul id="postsPagination" class="pagination justify-content-center">
             <li class="page-item">
-              <a id="paginationDown" class="page-link" href="#" aria-label="Previous">
+              <a id="paginationDown" class="page-link btn disabled" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <li class="page-item">
-              <a id="paginationUp" class="page-link" href="#" aria-label="Next">
+              <a id="paginationUp" class="page-link btn" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

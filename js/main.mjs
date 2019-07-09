@@ -82,7 +82,7 @@ import utils from './utils.js';
 
 const handleItemRemove = async (e, post) => {
   try {
-    const confirmMessage = 'delete';
+    const confirmMessage = `delete ${post.title}`;
     if (window.confirm(confirmMessage)) {
       await postApi.remove(post.id);
       window.location.reload();
@@ -146,22 +146,40 @@ const buildPostItem = (item) => {
 };
 
 const renderPagination = (pagination) => {
+  console.log(pagination);
   let page = pagination._page;
 
+   
   const paginationDown = document.querySelector('#paginationDown');
+  if (page > 1) {
+    paginationDown.classList.remove("disabled");
+  }
   paginationDown.addEventListener('click', () => {
     --page;
     paginationDown.href = `?_limit=6&_page=${page}`;
   });
   console.log(paginationDown);
 
+  let totalPage = pagination._totalRows / pagination._limit;
+  console.log(totalPage);
+  let n = Math.ceil(totalPage);
+  console.log(n);
+
   const paginationUp = document.querySelector('#paginationUp');
+ 
+  if (page === totalPage) {
+    paginationUp.classList.add("disabled");
+  }
+  
+  console.log(page);
   paginationUp.addEventListener('click', () => {
     ++page;
     paginationUp.href = `?_limit=6&_page=${page}`;
   });
   console.log(paginationUp);
-};
+ 
+  
+}; 
 
 // getPostListAsync().then(data => console.log)
 
