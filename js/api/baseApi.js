@@ -11,7 +11,7 @@ export default class BaseApi {
   getAll(limit) {
     let url = '';
     if (limit) {
-      url = `${AppConstants.API_URL}/${this.getResourceName()}/?${limit}`;
+      url = `${AppConstants.API_URL}/${this.getResourceName()}?${limit}`;
     } else {
       url = `${AppConstants.API_URL}/${this.getResourceName()}`;
     }

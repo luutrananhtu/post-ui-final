@@ -18,6 +18,13 @@ const validatePostForm = () => {
       utils.addClassByElementId('postAuthor', ['is-invalid']);
       isValid = false;
     }
+
+    // description is required
+    const description = utils.getValueByElementId('postDescription');
+    if (!description) {
+      utils.addClassByElementId('postDescription', ['is-invalid']);
+      isValid = false;
+    }
   
     return isValid;
   };
@@ -63,12 +70,12 @@ const getFormValue = () => {
 
     const controlNameList = ['Title', 'Author', 'Description'];
 
-    controlNameList.forEach(controlName => {
-        const inputName = document.getElementById(`post${controlName}`);
-        if (inputName.value.length === 0) {
-            alert(`${controlName} cannot be empty`);
+    const isValid = validatePostForm();
+        if (!isValid) {
             throw new Error();
         }
+    controlNameList.forEach(controlName => {
+        const inputName = document.getElementById(`post${controlName}`);
         formValue[controlName.toLowerCase()] = inputName.value;
     })
 

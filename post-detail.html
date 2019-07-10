@@ -21,8 +21,6 @@
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 
   <!-- Internal CSS -->
-  <script type="module" src="/js/lightbox-plus-jquery.min.js"></script>
-
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/post-detail.css">
   <link rel="stylesheet" href="css/lightbox.min.css">
@@ -82,9 +80,11 @@
               deserunt.
             </p>
 
-           <a href="/images/387-1368x800 (1).jpg" data-lightbox="mygallery">
-            <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos">
-          </a>
+            <a href="https://picsum.photos/1368/800" data-lightbox="image-1" data-title="Picsum photos">
+              <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos">
+            </a>
+            <!-- <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos"> -->
+          
     
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
@@ -104,7 +104,9 @@
               deserunt.
             </p>
 
+            <a href="https://picsum.photos/1368/1000" data-lightbox="image-2" data-title="Picsum photos">
             <img class="post-image" src="https://picsum.photos/1368/1000" data-lightbox="post-image" alt="Picsum photos">
+          </a>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
@@ -118,12 +120,14 @@
   </main>
 
   <footer class="text-center text-muted py-3">
-    <small>Created by Po with <i class="fas fa-heart"></i></small>
+    <small>Created by AnhTu with <i class="fas fa-heart"></i></small>
   </footer>
 
 
   <!-- Scripts should be placed here to prevent blocking render UI -->
   <script type="module" src="js/post-detail.mjs"></script>
+  <script src="js/lightbox-plus-jquery.min.js"></script>
+  
 </body>
 
 </html>

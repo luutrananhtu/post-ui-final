@@ -160,13 +160,11 @@ const renderPagination = (pagination) => {
   });
   console.log(paginationDown);
 
-  let totalPage = pagination._totalRows / pagination._limit;
-  console.log(totalPage);
-  let n = Math.ceil(totalPage);
-  console.log(n);
-
+  let totalPage = Math.ceil(pagination._totalRows / pagination._limit);
+  
   const paginationUp = document.querySelector('#paginationUp');
  
+  console.log(page, totalPage)
   if (page === totalPage) {
     paginationUp.classList.add("disabled");
   }
@@ -220,13 +218,13 @@ const init = async () => {
   try {
     let param = new URLSearchParams(window.location.search);
 
-    const limit = `_limit=6`;
-    let numberPage = param.get('_page');
+    const limit = '_limit=6';
+    let numberPage = param.get('_page') || 1;
     let page = `_page=${numberPage}`;
 
-    const limitAndPage = `${limit}&${page}`
+    const limitAndPage = `${page}&${limit}&_sort=updatedAt&_order=desc`
     const postList = await postApi.getAll(limitAndPage);
-    const data = postList.data.reverse();
+    const data = postList.data;
 
 
     const pagination = postList.pagination;
