@@ -119,6 +119,12 @@ const init = async () => {
             handleEdit(post.id);
         })
     }
+    const goToDetailPageLink = document.querySelector('#goToDetailPageLink');
+    if (goToDetailPageLink ) {
+        goToDetailPageLink.href = `post-detail.html?postId=${postId}`;
+        goToDetailPageLink.innerHTML = '<i class="fas fa-eye mr-1"></i> View Post Detail ';
+    }
+
     handleChangeImageClick(post.imageUrl);
     setFormValue(post);
 }
